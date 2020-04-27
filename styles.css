@@ -1,0 +1,100 @@
+input[type="number"] {
+  max-width: 80%;
+}
+
+div.outer {
+  position: fixed;
+  top: 35px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Customize fonts */
+body, label, input, button, select { 
+  font-family: 'Helvetica Neue', Helvetica;
+  font-weight: 200;
+}
+h1, h2, h3, h4 { font-weight: 400; }
+
+#controls {
+  /* Appearance */
+  background-color: white;
+  padding: 0 10px 10px 10px;
+  cursor: move;
+  /* Fade out while not hovering */
+  opacity: 0.55;
+  zoom: 0.9;
+  transition: opacity 500ms 1s;
+}
+
+#controls:hover {
+  /* Fade in while hovering */
+  opacity: 0.75;
+  transition-delay: 0;
+}
+
+#logo {
+  /* Appearance */
+  background-color: transparent;
+  cursor: move;
+  /* Fade out while not hovering */
+  opacity: 0.25;
+  zoom: 0.9;
+  transition: opacity 500ms 1s;
+}
+
+#logo:hover {
+  /* Fade in while hovering */
+  opacity: 0.95;
+  transition-delay: 0;
+}
+.blinking{
+  text-align: right;
+  animation:blinkingText 1.2s infinite;
+  
+}
+@keyframes blinkingText{ 
+  0%{     color: #ff0000;    }
+  49%{    color: #ff0000; }
+  60%{    color: transparent; }
+  99%{    color:transparent;  }
+  100%{   color: #ff0000;    }
+}
+
+
+  .case{
+    text-align : center;
+    color : #ff0000;
+    font-size: smaller;
+  }
+h3{
+  text-align: center;
+}
+.death{
+  text-align : center;
+  color : #00ff00;
+  font-size: smaller;
+
+}
+.recov{
+  text-align : center;
+  color : #0000ff;
+  font-size: smaller;
+}
+.last{
+	
+   text-align : center;
+   color : #0099ff;
+   font-size: larger;
+   animation:blink 1.2s infinite;
+}
+@keyframes blink{ 
+  0%{     color: #0099ff;    }
+  49%{    color: #0099ff; }
+  60%{    color: transparent; }
+  99%{    color:transparent;  }
+  100%{   color: #0099ff;    }
+}
