@@ -43,8 +43,8 @@ shinyServer(function(input, output,session) {
        data
     })
     agg_data=reactive({
-      data=read.csv("https://raw.githubusercontent.com/eparker12/nCoV_tracker/master/input_data/coronavirus.csv")
-      country_data=read.csv("https://raw.githubusercontent.com/eparker12/nCoV_tracker/master/input_data/countries_codes_and_coordinates.csv")
+      data=read.csv("data/coronavirus.csv")
+      country_data=read.csv("data/countries_codes_and_coordinates.csv")
       if(all(unique(data$country) %in% country_data$country==FALSE))
         print("Error!!")
       
@@ -81,19 +81,19 @@ shinyServer(function(input, output,session) {
     
     
    output$conf=renderText({
-       cases=livedata()[1]#conf_cases=df()$Confirmed[nrow(df())]#df()$Confirmed[nrow(df())]
+       cases=livedata()[1]
        paste0(cases, " Cases")
    })
    output$deaths=renderText({
-       death_cases=livedata()[2] #df()$Deaths[nrow(df())]
+       death_cases=livedata()[2] 
        paste0(prettyNum(death_cases), "  Deaths")
    })
    output$recov=renderText({
-       recov_cases=livedata()[3]  #df()$Recoveries[nrow(df())]
+       recov_cases=livedata()[3]  
        paste0(prettyNum(recov_cases), "  Recovered")
    })
    output$active=renderText({
-       active_cases=livedata()[4]  #df()$Active[nrow(df())]
+       active_cases=livedata()[4]  
        paste0(prettyNum(active_cases), "  Active Cases")
        
    })
@@ -128,10 +128,10 @@ shinyServer(function(input, output,session) {
                 max = as.Date(max_date,"%Y-%m-%d"),
                 value = as.Date(max_date,"%Y-%m-%d"),
                 timeFormat = "%d %b") 
-                #animate=animationOptions(interval = 2000, loop = FALSE))
+               
   })
   output$daily_conf=renderPlot({
-    data=daily()    #subset(daily(),Date<=input$date_upto)
+    data=daily()   
     p = ggplot(data,aes(x=Date,y=Confirmed))+
       geom_bar(position="stack", stat="identity",fill="green")+
       xlab("Date")+
@@ -450,7 +450,7 @@ shinyServer(function(input, output,session) {
   
   casestudy_df=reactive({
     df=agg_data()
-    pop=read.csv("new_horizon_dataframe.csv")
+    pop=read.csv("data/new_horizon_dataframe.csv")
     colnames(pop)[]
     pop1=aggregate(pop[,c(5,13)],by=list(pop$Country.Region ),FUN = mean)
     colnames(pop1)[1]="jhu_id"
@@ -525,8 +525,9 @@ shinyServer(function(input, output,session) {
    output$temp=renderText({
       paste0("Avg. Temp.: ",prettyNum(d()$Avg_temp),"°C")
    })   
-   #data for case study analysis
 
+
+#case study plots
 
    output$case_cumu_plot=renderPlotly({
     
